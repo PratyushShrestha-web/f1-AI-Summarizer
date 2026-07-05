@@ -32,7 +32,10 @@ def fetch_latest_race():
        raise Exception("No completed races found.")
 
     latest_race = completed_races[-1]
-
+    
+    
+   
+    
     return latest_race
 
 
@@ -96,3 +99,4 @@ def fetch_race_control(session_key):
         raise Exception("No race control found")
     
     return race_control
+
