@@ -1,5 +1,7 @@
 from api import fetch_latest_race, fetch_drivers, fetch_session_results, fetch_race_control
-from analyzer import analyze_race_control
+from analyzer import analyze_race_control, build_prompt
+from ai import generate_summary
+
 
 def main():
     # Fetch the latest race
@@ -31,7 +33,28 @@ def main():
         )
     print(f"Race Control Events: {len(race_control)}")
     
-    analyze_race_control(race_control)
+
+    
+    important_events = analyze_race_control(race_control)
+
+    print("\nImportant Race Events")
+    print("-" * 40)
+
+    for event in important_events:
+      print(
+        f"Lap {event['lap']:>2} | "
+        f"{event['flag']:<13} | "
+        f"{event['message']}"
+      )
+
+    prompt = build_prompt(important_events)
+
+    summary = generate_summary(prompt)
+
+    print("\nAI Race Summary")
+    print("-" * 40)
+    print(summary)
+    
     
 if __name__ == "__main__":
     main()

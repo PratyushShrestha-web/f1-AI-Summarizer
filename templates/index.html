@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>F1 AI Summarizer</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-white">
+
+<div class="max-w-6xl mx-auto p-8">
+
+    <h1 class="text-5xl font-bold text-red-500 mb-2">
+         F1 AI Summarizer
+    </h1>
+
+    <p class="text-gray-400 mb-10">
+        AI-powered Formula 1 race analysis
+    </p>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+
+            <h2 class="text-2xl font-semibold mb-5">
+                Latest Race
+            </h2>
+
+            <p><strong>Country:</strong> {{ race.country_name }}</p>
+            <p><strong>Circuit:</strong> {{ race.circuit_short_name }}</p>
+            <p><strong>Session:</strong> {{ race.session_name }}</p>
+            <p><strong>Date:</strong> {{ race.date_start }}</p>
+
+        </div>
+
+
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+
+            <h2 class="text-2xl font-semibold mb-5">
+                AI Summary
+            </h2>
+        <form action="/summary" method="get">
+            <button
+                class="bg-red-600 hover:bg-red-700 px-5 py-3 rounded-lg font-semibold transition">
+
+                Generate AI Summary
+
+            </button>
+        </form>
+            {% if summary %}
+
+                 <p class="mt-6 text-gray-300 whitespace-pre-line">
+
+                 {{ summary }}
+
+                     </p>
+
+                     {% else %}
+
+               <p class="mt-6 text-gray-300">
+
+    Click the button to generate an AI race summary.
+
+          </p>
+
+{% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -28,11 +28,22 @@ def analyze_race_control(race_control):
 
                 important_events.append(important_event)
 
-    print("\nImportant Race Events")
-    print("-" * 40)
+
+  
 
     for event in important_events:
-        print(f"Lap {event['lap']:>2} | {event['flag']:<13} | {event['message']}")
+       
 
-    return important_events
+     return important_events
 
+def build_prompt(important_events):
+    prompt = ""
+
+    for event in important_events:
+        prompt += (
+            f"Lap {event['lap']:>2} | "
+            f"{event['flag']:<13} | "
+            f"{event['message']}\n"
+        )
+
+    return prompt
