@@ -100,3 +100,16 @@ def fetch_race_control(session_key):
     
     return race_control
 
+def fetch_driver_standings(session_key):
+    
+    url =f"{BASE_URL}/championship_drivers"
+    
+    params = {
+        "session_key": session_key
+    }
+    
+    response = requests.get(url,params=params)
+    
+    response.raise_for_status()
+    
+    return response.json()

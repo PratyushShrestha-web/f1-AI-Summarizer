@@ -20,7 +20,7 @@
     <p class="text-gray-400 mb-10">
         AI-powered Formula 1 race analysis
     </p>
-
+    
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
         <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
@@ -75,6 +75,90 @@
         </div>
       
     </div>
+    <div class="bg-gray-800 rounded-xl p-6 shadow-lg mt-8">
+
+    <h2 class="text-2xl font-semibold mb-5">
+        🏆 Driver Championship
+    </h2>
+
+    <table class="w-full">
+
+        <thead>
+
+            <tr class="text-left border-b border-gray-600">
+                <th class="pb-3">Pos</th>
+                <th class="pb-3">Driver</th>
+                <th class="pb-3">Team</th>
+                <th class="pb-3">Points</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for driver in championship %}
+
+            {% if driver.position == 1 %}
+
+            <tr class="border-b border-gray-700 border-l-4 border-yellow-400">
+
+            {% elif driver.position == 2 %}
+
+            <tr class="border-b border-gray-700 border-l-4 border-gray-300">
+
+            {% elif driver.position == 3 %}
+
+            <tr class="border-b border-gray-700 border-l-4 border-orange-500">
+
+            {% else %}
+
+            <tr class="border-b border-gray-700">
+
+            {% endif %}
+
+                <td class="py-2 font-bold">
+
+                    {% if driver.position == 1 %}
+
+                        🥇
+
+                    {% elif driver.position == 2 %}
+
+                        🥈
+
+                    {% elif driver.position == 3 %}
+
+                        🥉
+
+                    {% else %}
+
+                        {{ driver.position }}
+
+                    {% endif %}
+
+                </td>
+
+                <td class="py-2">
+                    {{ driver.name }}
+                </td>
+
+                <td class="py-2">
+                    {{ driver.team }}
+                </td>
+
+                <td class="py-2">
+                    {{ driver.points|int }}
+                </td>
+
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
     <div class="bg-gray-800 rounded-xl p-6 shadow-lg mt-8">
 
     <h2 class="text-2xl font-semibold mb-5">
@@ -157,6 +241,7 @@
     </div>
 
 </div>
+     
     <table class="w-full">
 
         <thead>
@@ -212,15 +297,20 @@
 </td>
 
                 <td class="py-2">
-                    {{ result.name }}
-                </td>
+    <a
+        href="/driver/{{ result.driver_number }}"
+        class="text-red-400 hover:underline"
+    >
+        {{ result.name }}
+    </a>
+</td>
 
                 <td class="py-2">
                     {{ result.team }}
                 </td>
 
                 <td class="py-2">
-                    {{ result.points }}
+                    {{ result.points |int}}
                 </td>
 
             </tr>
@@ -242,7 +332,7 @@
 
         <thead>
 
-            <tr class="text-left border-b border-gray-600">
+           <tr class="text-left border-b border-gray-600">
 
                 <th class="pb-3">No.</th>
                 <th class="pb-3">Driver</th>

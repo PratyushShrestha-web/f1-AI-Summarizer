@@ -1,4 +1,4 @@
-from api import fetch_latest_race, fetch_drivers, fetch_session_results, fetch_race_control
+from api import fetch_latest_race, fetch_drivers, fetch_session_results, fetch_race_control,fetch_driver_standings
 from analyzer import analyze_race_control, build_prompt
 from ai import generate_summary
 
@@ -13,7 +13,10 @@ def main():
     #results = fetch_session_results(race["session_key"])
     
     race_control = fetch_race_control(race["session_key"])
-   
+    
+    standings = fetch_driver_standings(race["session_key"])
+    
+  
     
     print("Latest Race")
     print("-" * 40)
