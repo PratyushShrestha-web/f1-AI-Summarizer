@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from api import fetch_latest_race, fetch_drivers, fetch_race_control,fetch_session_results,fetch_driver_standings
+from api import fetch_latest_race, fetch_drivers, fetch_race_control,fetch_session_results,fetch_driver_standings,fetch_constructor_standings
 from analyzer import analyze_race_control, build_prompt
 from ai import generate_summary
 from datetime import datetime
@@ -72,6 +72,9 @@ def home():
 
             break
     
+    race = fetch_latest_race()
+
+    constructors = fetch_constructor_standings(race["session_key"])
         
     prompt = build_prompt(important_events)
 
@@ -82,6 +85,7 @@ def home():
         drivers=drivers,
         race_results=race_results,
         championship=championship,
+        constructors=constructors,
         podium=podium,
         important_events=important_events,
         summary =None
@@ -196,13 +200,19 @@ def driver_profile(driver_number):
         break
     
     
-    print(selected_driver)
+
         
     return render_template(
     "driver.html",
     driver=selected_driver,
     standing=driver_standing
 )
+    
+    
+
+    
+    
+    
 
 if __name__ == "__main__":
     app.run(debug=True)

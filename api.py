@@ -113,3 +113,17 @@ def fetch_driver_standings(session_key):
     response.raise_for_status()
     
     return response.json()
+
+def fetch_constructor_standings(session_key):
+
+    url = f"{BASE_URL}/championship_teams"
+
+    params = {
+        "session_key": session_key
+    }
+
+    response = requests.get(url, params=params)
+
+    response.raise_for_status()
+
+    return response.json()
