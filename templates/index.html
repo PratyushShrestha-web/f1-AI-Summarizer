@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>F1 AI Summarizer</title>
+    <title>V6 Turbo AI</title>
        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -411,7 +411,45 @@ map.fitBounds(bounds, {
 console.log(circuits);
 
 </script>
+
 <script>
+    const miniMap = L.map("mini-map", {
+    zoomControl: false,
+    dragging: false,
+    scrollWheelZoom: false,
+    doubleClickZoom: false,
+    boxZoom: false,
+    keyboard: false,
+    touchZoom: false
+}).setView([20, 0], 2);
+
+L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+    {
+        attribution: "&copy; OpenStreetMap &copy; CARTO"
+    }
+).addTo(miniMap);
+
+const miniBounds = [];
+
+for (const circuit in circuits) {
+
+    const info = circuits[circuit];
+
+    L.circleMarker(info.coordinates, {
+        radius: 5,
+        color: "#E10600",
+        fillColor: "#E10600",
+        fillOpacity: 1
+    })
+    .addTo(miniMap);
+
+    miniBounds.push(info.coordinates);
+}
+
+miniMap.fitBounds(miniBounds, {
+    padding: [20, 20]
+});
     lucide.createIcons();
 </script>
 </body>
