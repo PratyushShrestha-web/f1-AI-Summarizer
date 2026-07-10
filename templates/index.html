@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link
      rel="stylesheet"
      href="https://unpkg.com/leaflet/dist/leaflet.css"
@@ -27,95 +28,13 @@
 
         {% include "components/ai_summary.html" %}
 
+  {%include "components/championship.html" %}
+
+  {% include "components/drivers.html" %}
+
+  {% include "components/circuits.html" %}
+
     </div>
-
-</div>
-      
-    </div>
-    <div class="bg-gray-800 rounded-xl p-6 shadow-lg mt-8">
-
-    <h2 class="text-2xl font-semibold mb-5">
-        🏆 Driver Championship
-    </h2>
-
-    <table class="w-full">
-
-        <thead>
-
-            <tr class="text-left border-b border-gray-600">
-                <th class="pb-3">Pos</th>
-                <th class="pb-3">Driver</th>
-                <th class="pb-3">Team</th>
-                <th class="pb-3">Points</th>
-            </tr>
-
-        </thead>
-
-        <tbody>
-
-        {% for driver in championship %}
-
-            {% if driver.position == 1 %}
-
-            <tr class="border-b border-gray-700 border-l-4 border-yellow-400">
-
-            {% elif driver.position == 2 %}
-
-            <tr class="border-b border-gray-700 border-l-4 border-gray-300">
-
-            {% elif driver.position == 3 %}
-
-            <tr class="border-b border-gray-700 border-l-4 border-orange-500">
-
-            {% else %}
-
-            <tr class="border-b border-gray-700">
-
-            {% endif %}
-
-                <td class="py-2 font-bold">
-
-                    {% if driver.position == 1 %}
-
-                        🥇
-
-                    {% elif driver.position == 2 %}
-
-                        🥈
-
-                    {% elif driver.position == 3 %}
-
-                        🥉
-
-                    {% else %}
-
-                        {{ driver.position }}
-
-                    {% endif %}
-
-                </td>
-
-                <td class="py-2">
-                    {{ driver.name }}
-                </td>
-
-                <td class="py-2">
-                    {{ driver.team }}
-                </td>
-
-                <td class="py-2">
-                    {{ driver.points|int }}
-                </td>
-
-            </tr>
-
-        {% endfor %}
-
-        </tbody>
-
-    </table>
-
-</div>
 
 <div class="bg-gray-800 rounded-xl p-6 shadow-lg mt-8">
 
@@ -371,53 +290,9 @@
     </table>
 
 </div>
-      <div class="bg-gray-800 rounded-xl p-6 shadow-lg mt-8">
+   
 
-    <h2 class="text-2xl font-semibold mb-5">
-         Drivers
-    </h2>
-
-    <table class="w-full">
-
-        <thead>
-
-           <tr class="text-left border-b border-gray-600">
-
-                <th class="pb-3">No.</th>
-                <th class="pb-3">Driver</th>
-                <th class="pb-3">Team</th>
-
-            </tr>
-
-        </thead>
-
-        <tbody>
-
-            {% for driver in drivers %}
-
-            <tr class="border-b border-gray-700">
-
-                <td class="py-2">
-                    {{ driver.driver_number }}
-                </td>
-
-                <td class="py-2">
-                    {{ driver.full_name }}
-                </td>
-
-                <td class="py-2">
-                    {{ driver.team_name }}
-                </td>
-
-            </tr>
-
-            {% endfor %}
-
-        </tbody>
-
-    </table>
-
-</div>
+   
 
  <div class="bg-gray-800 rounded-xl p-6 shadow-lg mt-8">
 
@@ -535,6 +410,9 @@ map.fitBounds(bounds, {
 
 console.log(circuits);
 
+</script>
+<script>
+    lucide.createIcons();
 </script>
 </body>
 </html>
