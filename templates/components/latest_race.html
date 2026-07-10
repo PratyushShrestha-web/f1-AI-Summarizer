@@ -1,0 +1,43 @@
+<div class="bento-card large">
+
+    <div class="flex items-center justify-between">
+
+        <h2 class="card-title">
+            🏁 Latest Race
+        </h2>
+
+        <span class="text-red-500 text-sm font-semibold">
+            LIVE
+        </span>
+
+    </div>
+
+    <div class="mt-8">
+
+        <p class="text-4xl font-bold">
+
+            {{ race.country_name }}
+
+        </p>
+
+        <p class="text-gray-400 mt-2">
+
+            {{ race.circuit_short_name }}
+
+        </p>
+
+        <p class="text-gray-500 mt-8">
+
+            {{ formatted_date }}
+
+        </p>
+
+    </div>
+
+    <a href="/summary" class="card-link">
+
+        View Analysis →
+
+    </a>
+
+</div>

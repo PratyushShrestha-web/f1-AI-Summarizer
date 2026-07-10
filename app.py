@@ -3,7 +3,7 @@ from api import fetch_latest_race, fetch_drivers, fetch_race_control,fetch_sessi
 from analyzer import analyze_race_control, build_prompt
 from ai import generate_summary
 from datetime import datetime
-
+from coordinates import CIRCUITS
 
 
 
@@ -14,6 +14,8 @@ app = Flask(__name__)
 def home():
 
     race = fetch_latest_race()
+    
+    coordinates = CIRCUITS.get(race["circuit_short_name"])
     
     race_date = datetime.fromisoformat(race["date_start"])
 
@@ -77,7 +79,8 @@ def home():
     constructors = fetch_constructor_standings(race["session_key"])
         
     prompt = build_prompt(important_events)
-
+     
+     
     return render_template(
         "index.html",
         race=race,
@@ -86,6 +89,7 @@ def home():
         race_results=race_results,
         championship=championship,
         constructors=constructors,
+        circuits=CIRCUITS,
         podium=podium,
         important_events=important_events,
         summary =None
@@ -94,6 +98,8 @@ def home():
 @app.route("/summary")
 def summary():
     race = fetch_latest_race()
+    
+    coordinates = CIRCUITS.get(race["circuit_short_name"])
     
     race_date = datetime.fromisoformat(race["date_start"])
 
@@ -162,6 +168,7 @@ def summary():
     race_results=race_results,
     championship=championship,
     podium=podium,
+     circuits=CIRCUITS,
     summary=summary,
     important_events=important_events
 )
