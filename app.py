@@ -156,9 +156,13 @@ def summary():
     
     podium = race_results[:3]
     
+    constructors = fetch_constructor_standings(race["session_key"])
+        
     prompt = build_prompt(important_events)
     
     summary = generate_summary(prompt)
+    
+    
     
     return render_template(
     "index.html",
@@ -168,9 +172,10 @@ def summary():
     race_results=race_results,
     championship=championship,
     podium=podium,
-     circuits=CIRCUITS,
+    circuits=CIRCUITS,
     summary=summary,
-    important_events=important_events
+    important_events=important_events,
+    constructors=constructors
 )
     
     

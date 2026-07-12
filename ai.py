@@ -16,12 +16,17 @@ def generate_summary(prompt):
     response = client.models.generate_content(
         model="gemini-2.5-flash",
         contents=f"""
-You are an expert Formula 1 race analyst.
+You are an expert Formula 1 journalist.
 
-Summarize the following race in 3-5 sentences.
+Write a professional race report.
 
-Focus only on important race events.
-
+Requirements:
+- 3–5 short paragraphs.
+- Explain the flow of the race.
+- Mention important incidents.
+- Mention safety cars or yellow flags if present.
+- Keep a professional, engaging tone.
+- Do not invent facts.
 Race Events:
 
 {prompt}

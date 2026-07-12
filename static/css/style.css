@@ -176,3 +176,103 @@ body{
 .leaflet-control-attribution{
     display:none;
 }
+#generateBtn:disabled{
+
+    opacity:.8;
+
+    cursor:not-allowed;
+
+    .animate-spin{
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+@keyframes glow {
+
+    0%{
+        box-shadow:0 0 0 rgba(225,6,0,0);
+        border-color:#2B2B2B;
+    }
+
+    50%{
+        box-shadow:0 0 40px rgba(225,6,0,.55);
+        border-color:#E10600;
+    }
+
+    100%{
+        box-shadow:0 0 0 rgba(225,6,0,0);
+        border-color:#2B2B2B;
+    }
+
+}
+
+.highlight{
+
+    animation:glow 2.5s ease;
+
+}
+}
+
+.analysis-box{
+
+    background:#111111;
+
+    border:1px solid #2B2B2B;
+
+    border-radius:18px;
+
+    padding:28px;
+
+    color:#E5E7EB;
+
+    line-height:1.9;
+
+    font-size:15px;
+
+    max-height:420px;
+
+    overflow-y:auto;
+
+    white-space:pre-line;
+
+}
+
+.analysis-box::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.analysis-box::-webkit-scrollbar-thumb{
+
+    background:#E10600;
+
+    border-radius:999px;
+
+}
+
+.analysis-placeholder{
+
+    min-height:300px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+}

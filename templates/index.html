@@ -34,320 +34,18 @@
 
   {% include "components/circuits.html" %}
 
-    </div>
+  {% include "components/constructors.html" %}
 
-<div class="bg-gray-800 rounded-xl p-6 shadow-lg mt-8">
+  {% include "components/results.html" %}
 
-    <h2 class="text-2xl font-semibold mb-5">
-        Constructor Standings
-    </h2>
-
-    <table class="w-full">
-
-        <thead>
-
-            <tr class="text-left border-b border-gray-600">
-
-                <th class="pb-3">Pos</th>
-                <th class="pb-3">Team</th>
-                <th class="pb-3">Points</th>
-
-            </tr>
-
-        </thead>
-
-        <tbody>
-
-            {% for team in constructors %}
-
-            {% if team.position_current == 1 %}
-
-            <tr class="border-b border-gray-700 border-l-4 border-yellow-400">
-
-            {% elif team.position_current == 2 %}
-
-            <tr class="border-b border-gray-700 border-l-4 border-gray-300">
-
-            {% elif team.position_current == 3 %}
-
-            <tr class="border-b border-gray-700 border-l-4 border-orange-500">
-
-            {% else %}
-
-            <tr class="border-b border-gray-700">
-
-            {% endif %}
-
-                <td class="py-2 font-bold">
-
-                    {% if team.position_current == 1 %}
-
-                        🥇 {{ team.position_current }}
-
-                    {% elif team.position_current == 2 %}
-
-                        🥈 {{ team.position_current }}
-
-                    {% elif team.position_current == 3 %}
-
-                        🥉 {{ team.position_current }}
-
-                    {% else %}
-
-                        {{ team.position_current }}
-
-                    {% endif %}
-
-                </td>
-
-                <td class="py-2">
-                    {{ team.team_name }}
-                </td>
-
-                <td class="py-2">
-                    {{ team.points_current | int }}
-                </td>
-
-            </tr>
-
-            {% endfor %}
-
-        </tbody>
-
-    </table>
-
-</div>
-        <div class="bg-gray-800 rounded-xl p-6 shadow-lg mt-8">
-
-    <h2 class="text-2xl font-semibold mb-5">
-        F1 Circuit Map
-    </h2>
-
-    <div id="map" class="rounded-xl" style="height:500px;"></div>
-
-</div>
-
-    <div class="bg-gray-800 rounded-xl p-6 shadow-lg mt-8">
-
-    <h2 class="text-2xl font-semibold mb-5">
-         Race Results
-    </h2>
-    <div class="bg-gray-800 rounded-xl p-6 shadow-lg mt-8">
-
-    <h2 class="text-2xl font-semibold mb-6">
-        🏆 Podium
-    </h2>
-    {% set first = podium[0] %}
-{% set second = podium[1] %}
-{% set third = podium[2] %}
-
-    
-
-        
-       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
-
-    <!-- Second -->
-    <div class="bg-gray-700 rounded-xl p-5 mt-10 text-center">
-
-        <div class="text-5xl mb-3">🥈</div>
-
-        <h3 class="text-xl font-bold">
-            {{ second.name }}
-        </h3>
-
-        <p class="text-gray-400 mt-2">
-            {{ second.team }}
-        </p>
-
-        <p class="mt-4 font-semibold text-red-400">
-            {{ second.points }} pts
-        </p>
+  {% include "components/events.html" %}
 
     </div>
 
-    <!-- First -->
-    <div class="bg-gray-700 rounded-xl p-8 text-center border-4 border-yellow-400">
 
-        <div class="text-6xl mb-3">🥇</div>
-
-        <h3 class="text-2xl font-bold">
-            {{ first.name }}
-        </h3>
-
-        <p class="text-gray-400 mt-2">
-            {{ first.team }}
-        </p>
-
-        <p class="mt-4 font-bold text-red-400 text-lg">
-            {{ first.points }} pts
-        </p>
-
-    </div>
-
-    <!-- Third -->
-    <div class="bg-gray-700 rounded-xl p-5 mt-10 text-center">
-
-        <div class="text-5xl mb-3">🥉</div>
-
-        <h3 class="text-xl font-bold">
-            {{ third.name }}
-        </h3>
-
-        <p class="text-gray-400 mt-2">
-            {{ third.team }}
-        </p>
-
-        <p class="mt-4 font-semibold text-red-400">
-            {{ third.points }} pts
-        </p>
-
-    </div>
-
-</div>
-      
-
-    </div>
-
-</div>
-     
-    <table class="w-full">
-
-        <thead>
-            <tr class="text-left border-b border-gray-600">
-                <th class="pb-3">Pos</th>
-                <th class="pb-3">Driver</th>
-                <th class="pb-3">Team</th>
-                <th class="pb-3">Points</th>
-            </tr>
-        </thead>
-        
-        <tbody>
-
-            {% for result in race_results %}
-{% if result.position == 1 %}
-
-<tr class="border-b border-gray-700 border-l-4 border-yellow-400">
-
-{% elif result.position == 2 %}
-
-<tr class="border-b border-white-700 border-l-4 border-white-300">
-
-{% elif result.position == 3 %}
-
-<tr class="border-b border-gray-700 border-l-4 border-orange-500">
-
-{% else %}
-
-<tr class="border-b border-gray-700">
-
-{% endif %}
-
-                <td class="py-2 font-bold">
-
-    {% if result.position == 1 %}
-
-        🥇
-
-    {% elif result.position == 2 %}
-
-        🥈
-
-    {% elif result.position == 3 %}
-
-        🥉
-
-    {% else %}
-
-        {{ result.position }}
-
-    {% endif %}
-
-</td>
-
-                <td class="py-2">
-    <a
-        href="/driver/{{ result.driver_number }}"
-        class="text-red-400 hover:underline"
-    >
-        {{ result.name }}
-    </a>
-</td>
-
-                <td class="py-2">
-                    {{ result.team }}
-                </td>
-
-                <td class="py-2">
-                    {{ result.points |int}}
-                </td>
-
-            </tr>
-
-            {% endfor %}
-
-        </tbody>
-
-    </table>
-
-</div>
-   
-
-   
-
- <div class="bg-gray-800 rounded-xl p-6 shadow-lg mt-8">
-
-    <h2 class="text-2xl font-semibold mb-5">
-         Important Race Events
-    </h2>
-{% for event in important_events %}
-
-    {% if event.flag == "YELLOW" %}
-
-        <div class="border-l-4 border-yellow-400 pl-4 py-3 mb-4 bg-gray-700 rounded">
-
-    {% elif event.flag == "DOUBLE YELLOW" %}
-
-        <div class="border-l-4 border-orange-400 pl-4 py-3 mb-4 bg-gray-700 rounded">
-
-    {% elif event.flag == "RED" %}
-
-        <div class="border-l-4 border-red-500 pl-4 py-3 mb-4 bg-gray-700 rounded">
-
-    {% elif event.flag == "CHEQUERED" %}
-
-        <div class="border-l-4 border-gray-300 pl-4 py-3 mb-4 bg-gray-700 rounded">
-
-    {% endif %}
-
-        <p class="font-bold">
-            Lap {{ event.lap }}
-        </p>
-
-        <p class="font-semibold">
-            {{ event.flag }}
-        </p>
-
-        <p class="text-gray-300">
-            {{ event.message }}
-        </p>
-
-    </div>
-
-{% endfor %}
 </div>
 <script>
-
-function loading() {
-
-    const btn = document.getElementById("generateBtn");
-
-    btn.innerHTML = "⏳ Generating...";
-
-   
-
-}
-
-</script> 
+</script>
    
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
@@ -451,6 +149,34 @@ miniMap.fitBounds(miniBounds, {
     padding: [20, 20]
 });
     lucide.createIcons();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    {% if summary %}
+
+    const card = document.getElementById("ai-summary");
+
+    if (card) {
+
+        setTimeout(() => {
+
+            card.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+            card.classList.add("highlight");
+
+        }, 300);
+
+    }
+
+    {% endif %}
+
+});
 </script>
 </body>
 </html>
