@@ -22,6 +22,8 @@
 
     {% include "components/hero.html" %}
 
+    {% include "components/status_bar.html" %}
+
     <div class="bento-grid">
 
         {% include "components/latest_race.html" %}
@@ -177,6 +179,26 @@ document.addEventListener("DOMContentLoaded", () => {
     {% endif %}
 
 });
+</script>
+<script>
+
+const generateBtn = document.getElementById("generate-btn");
+
+if(generateBtn){
+
+    generateBtn.addEventListener("click", function(){
+
+        document.getElementById("btn-text").innerHTML = `
+            <i data-lucide="loader-circle" class="inline w-4 h-4 animate-spin mr-2"></i>
+            V6 Turbo AI Processing...
+        `;
+
+        lucide.createIcons();
+
+    });
+
+}
+
 </script>
 </body>
 </html>
