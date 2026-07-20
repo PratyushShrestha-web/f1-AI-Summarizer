@@ -3,39 +3,44 @@ import requests
 BASE_URL = "https://api.openf1.org/v1"
 
 def fetch_latest_race():
-    
-    
+
     url = f"{BASE_URL}/sessions"
-    
+
     params = {
         "session_type": "Race"
     }
-    
+
     response = requests.get(url, params=params)
-    response.raise_for_status()  
+
+    response.raise_for_status()
 
     sessions = response.json()
-    
-    from datetime import datetime, timezone
-    
-    today = datetime.now(timezone.utc)
-    
-    completed_races = []
-     
-    for session in sessions:
-        race_data = datetime.fromisoformat(session["date_start"])
-        if race_data < today:
-           
-            completed_races.append(session)
-            
-    if not completed_races:
-       raise Exception("No completed races found.")
 
-    latest_race = completed_races[-1]
-    
-    
-   
-    
+    from datetime import datetime, timezone
+
+    now = datetime.now(timezone.utc)
+
+    completed_races = []
+
+    for session in sessions:
+
+        race_date = datetime.fromisoformat(
+            session["date_start"].replace("Z", "+00:00")
+        )
+
+        if race_date < now:
+
+            completed_races.append(session)
+
+    if not completed_races:
+
+        raise Exception("No completed races found.")
+
+    latest_race = max(
+        completed_races,
+        key=lambda race: race["date_start"]
+    )
+
     return latest_race
 
 

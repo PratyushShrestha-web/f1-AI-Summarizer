@@ -184,16 +184,291 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const generateBtn = document.getElementById("generate-btn");
 
-if(generateBtn){
+if (generateBtn) {
 
-    generateBtn.addEventListener("click", function(){
+    generateBtn.addEventListener("click", async function (event) {
 
-        document.getElementById("btn-text").innerHTML = `
-            <i data-lucide="loader-circle" class="inline w-4 h-4 animate-spin mr-2"></i>
+        event.preventDefault();
+
+        const buttonText = document.getElementById("btn-text");
+        const content = document.getElementById("analysis-content");
+        const aiCard = document.getElementById("ai-summary");
+
+        // Disable button
+        generateBtn.disabled = true;
+        generateBtn.classList.add("opacity-70");
+
+        // Update button
+        buttonText.innerHTML = `
+            <i data-lucide="loader-circle"
+               class="inline w-4 h-4 animate-spin mr-2">
+            </i>
+
             V6 Turbo AI Processing...
         `;
 
         lucide.createIcons();
+
+
+        try {
+
+            // Call Flask API
+            const response = await fetch("/api/summary");
+
+            const data = await response.json();
+
+            console.log("AI RESPONSE:", data);
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.error || "Failed to generate summary"
+                );
+
+            }
+
+
+            /*
+            =====================================
+            FORMAT AI RESPONSE
+            =====================================
+            */
+
+            let formattedSummary = data.summary;
+
+
+            // Escape HTML to prevent formatting problems
+            formattedSummary = formattedSummary
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+
+
+            // Format ## Section Headings
+            formattedSummary = formattedSummary.replace(
+                /^## (.*)$/gm,
+
+                `
+                <div class="report-section-title">
+
+                    <span class="section-line"></span>
+
+                    <h3>$1</h3>
+
+                </div>
+                `
+            );
+
+
+            // Format bullet points beginning with * or -
+            formattedSummary = formattedSummary.replace(
+                /^[*-]\s+(.*)$/gm,
+
+                `
+                <div class="report-bullet">
+
+                    <span class="bullet-marker"></span>
+
+                    <p>$1</p>
+
+                </div>
+                `
+            );
+
+
+            // Format bold text
+            formattedSummary = formattedSummary.replace(
+                /\*\*(.*?)\*\*/g,
+
+                `<strong>$1</strong>`
+            );
+
+
+           
+
+
+            /*
+            =====================================
+            BUILD REPORT UI
+            =====================================
+            */
+
+            content.innerHTML = `
+
+                <div class="analysis-box">
+
+
+                    <div class="report-content">
+
+                        ${formattedSummary}
+
+                    </div>
+
+
+                    <!-- REPORT FOOTER -->
+
+                    <div class="report-footer">
+
+
+                        <i data-lucide="shield-check"></i>
+
+
+                        Generated from structured Formula 1 race event data
+
+
+                    </div>
+
+
+                </div>
+
+            `;
+
+
+            // Activate Lucide icons
+            lucide.createIcons();
+
+
+            /*
+            =====================================
+            SCROLL TO AI REPORT
+            =====================================
+            */
+
+            setTimeout(() => {
+
+                aiCard.scrollIntoView({
+
+                    behavior: "smooth",
+
+                    block: "center"
+
+                });
+
+
+                aiCard.classList.add("highlight");
+
+            }, 200);
+
+
+            /*
+            =====================================
+            ANIMATION
+            =====================================
+            */
+
+            gsap.from(".analysis-box", {
+
+                opacity: 0,
+
+                y: 25,
+
+                duration: 0.7,
+
+                ease: "power3.out"
+
+            });
+
+
+            /*
+            =====================================
+            UPDATE BUTTON
+            =====================================
+            */
+
+            buttonText.innerHTML = `
+
+                <i data-lucide="check"
+                   class="inline w-4 h-4 mr-2">
+
+                </i>
+
+                Analysis Generated
+
+            `;
+
+            lucide.createIcons();
+
+
+        }
+
+
+        catch (error) {
+
+
+            console.error(
+
+                "AI SUMMARY ERROR:",
+
+                error
+
+            );
+
+
+            /*
+            =====================================
+            ERROR UI
+            =====================================
+            */
+
+            content.innerHTML = `
+
+                <div class="analysis-placeholder">
+
+
+                    <i data-lucide="triangle-alert"
+
+                       class="w-12 h-12 text-red-500 mb-4">
+
+                    </i>
+
+
+                    <h3 class="text-xl font-semibold mb-2">
+
+                        Analysis Failed
+
+                    </h3>
+
+
+                    <p class="card-subtitle">
+
+                        Unable to generate the AI race analysis.
+
+                    </p>
+
+
+                </div>
+
+            `;
+
+
+            lucide.createIcons();
+
+
+            buttonText.innerHTML = `
+
+                <i data-lucide="rotate-ccw"
+
+                   class="inline w-4 h-4 mr-2">
+
+                </i>
+
+                Try Again
+
+            `;
+
+
+            lucide.createIcons();
+
+        }
+
+
+        // Re-enable button
+
+        generateBtn.disabled = false;
+
+        generateBtn.classList.remove("opacity-70");
+
 
     });
 

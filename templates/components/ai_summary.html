@@ -22,56 +22,62 @@
         </div>
 
         {% if summary %}
+
         <span class="px-3 py-1 rounded-full bg-red-500/15 text-red-400 text-xs font-semibold">
             Generated
         </span>
+
         {% endif %}
 
     </div>
 
 
-    {% if summary %}
-     
-    <div class="analysis-box">
-        <div class="flex flex-wrap items-center gap-3 mb-6">
+    <!-- JavaScript will update this area -->
+    <div id="analysis-content">
 
-    <span class="px-3 py-1 rounded-full bg-red-500/10 text-red-400 text-xs font-semibold border border-red-500/20">
-        V6 Turbo AI
-    </span>
+        {% if summary %}
 
-    <span class="px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs border border-gray-700">
-        Gemini 2.5 Flash
-    </span>
+        <div class="analysis-box">
 
-    <span class="px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs border border-gray-700">
-        FIA Race Control
-    </span>
+            <div class="flex flex-wrap items-center gap-3 mb-6">
 
-</div>
-         
-        {{ summary }}
+                <span class="px-3 py-1 rounded-full bg-red-500/10 text-red-400 text-xs font-semibold border border-red-500/20">
+                    V6 Turbo AI
+                </span>
+
+                <span class="px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs border border-gray-700">
+                    Gemini 2.5 Flash
+                </span>
+
+                <span class="px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs border border-gray-700">
+                    FIA Race Control
+                </span>
+
+            </div>
+
+            {{ summary }}
+
+        </div>
+
+        {% else %}
+
+        <div class="analysis-placeholder">
+
+            <i data-lucide="bot" class="w-12 h-12 text-red-500 mb-4"></i>
+
+            <h3 class="text-xl font-semibold mb-2">
+                No AI Analysis Yet
+            </h3>
+
+            <p class="card-subtitle max-w-md mx-auto">
+                Click <strong>Generate Analysis</strong> button to let
+                V6 Turbo AI analyze the latest Formula 1 race.
+            </p>
+
+        </div>
+
+        {% endif %}
 
     </div>
-
-    {% else %}
-
-    <div class="analysis-placeholder">
-
-        <i data-lucide="bot" class="w-12 h-12 text-red-500 mb-4"></i>
-
-        <h3 class="text-xl font-semibold mb-2">
-            No AI Analysis Yet
-        </h3>
-
-        <p class="card-subtitle max-w-md mx-auto">
-
-            Click <strong>Generate Analysis</strong> button to let
-            V6 Turbo AI analyze the latest Formula 1 race.
-
-        </p>
-
-    </div>
-
-    {% endif %}
 
 </div>
