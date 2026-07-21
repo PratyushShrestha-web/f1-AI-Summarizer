@@ -224,9 +224,49 @@ def driver_profile(driver_number):
 )
     
 
+@app.route("/circuits")
+def circuits_page():
+
+    data = get_dashboard_data()
+
+    return render_template(
+        "circuitnav.html",
+        circuits=data["circuits"]
+    )
+
+
+@app.route("/standings")
+def standings_page():
+
+    data = get_dashboard_data()
+
+    return render_template(
+        "standings.html",
+        driver_standings=data["driver_standings"],
+        constructor_standings=data["constructor_standings"]
+    )
+
+
+@app.route("/races")
+def races_page():
+
+    data = get_dashboard_data()
+
+    return render_template(
+        "races.html",
+        race=data["race"],
+        results=data["results"]
+    )
+
+
+@app.route("/analysis")
+def analysis_page():
+
+    return render_template(
+        "analysis.html"
+    )
     
-    
-    
+
 
 if __name__ == "__main__":
     app.run(debug=True)

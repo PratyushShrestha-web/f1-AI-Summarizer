@@ -61,7 +61,7 @@ def fetch_drivers(session_key):
         raise Exception("No driver found.")
 
     
-    latest_race = drivers[-1]
+  
     return drivers
 
 def fetch_session_results(session_key):
