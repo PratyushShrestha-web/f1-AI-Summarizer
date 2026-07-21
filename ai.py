@@ -29,16 +29,16 @@ Rules:
 
 Return your response using EXACTLY this format:
 
-## Race Overview
+## Race Overview:
 (2-3 sentences summarizing how the race unfolded.)
 
-## Key Incidents
+## Key Incidents:
 (Bullet list of the most important race events.)
 
-## Race Analysis
+## Race Analysis:
 (Explain how the incidents affected the race.)
 
-## Final Verdict
+## Final Verdict:
 (Short concluding paragraph.)
 
 Race Events:

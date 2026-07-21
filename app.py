@@ -4,9 +4,10 @@ from analyzer import analyze_race_control, build_prompt
 from ai import generate_summary
 from datetime import datetime
 from coordinates import CIRCUITS
+import json
+import os
 
-
-
+SUMMARY_FILE = "data/summary_cache.json"
 app = Flask(__name__)
 
 def get_dashboard_data(generate_ai=False):
@@ -123,11 +124,64 @@ def summary():
 @app.route("/api/summary")
 def api_summary():
 
-    data = get_dashboard_data(generate_ai=True)
+    try:
 
-    return jsonify({
-        "summary": data["summary"]
-    })
+        # Check whether a valid cached summary exists
+        if os.path.exists(SUMMARY_FILE):
+
+            with open(SUMMARY_FILE, "r", encoding="utf-8") as file:
+
+                cached_data = json.load(file)
+
+            if "summary" in cached_data:
+
+                print("Using cached AI summary")
+
+                return jsonify({
+                    "summary": cached_data["summary"]
+                })
+
+
+        # No valid cached summary exists
+        print("Generating new AI summary...")
+
+        data = get_dashboard_data(generate_ai=True)
+
+        summary = data["summary"]
+
+
+        # Make sure data folder exists
+        os.makedirs("data", exist_ok=True)
+
+
+        # Save summary
+        with open(SUMMARY_FILE, "w", encoding="utf-8") as file:
+
+            json.dump({
+
+                "summary": summary
+
+            }, file, indent=4)
+
+
+        print("AI summary saved successfully")
+
+        return jsonify({
+
+            "summary": summary
+
+        })
+
+
+    except Exception as e:
+
+        print("API SUMMARY ERROR:", e)
+
+        return jsonify({
+
+            "error": str(e)
+
+        }), 500
     
 @app.route("/driver/<int:driver_number>")
 def driver_profile(driver_number):
