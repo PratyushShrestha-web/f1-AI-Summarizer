@@ -241,11 +241,10 @@ def standings_page():
     data = get_dashboard_data()
 
     return render_template(
-        "standings.html",
-        driver_standings=data["driver_standings"],
-        constructor_standings=data["constructor_standings"]
+        "standingsnav.html",
+        championship=data["championship"],
+        constructors=data["constructors"]
     )
-
 
 @app.route("/races")
 def races_page():
@@ -266,7 +265,6 @@ def analysis_page():
         "analysis.html"
     )
     
-
 
 if __name__ == "__main__":
     app.run(debug=True)
