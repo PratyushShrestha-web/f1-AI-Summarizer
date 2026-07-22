@@ -8,6 +8,12 @@ The application retrieves Formula 1 session data, race results, driver and const
 
 [View the Live Demo](https://f1-ai-summarizer.onrender.com/)
 
+## Screenshots
+  ## dashboard
+  ---------------------------------------------------------------------------------------------------------------------------
+<img width="1891" height="906" alt="image" src="https://github.com/user-attachments/assets/3ce3c086-6a5b-4fff-b9dd-f5ae4fc94d4b" />
+
+
 ##  Features
 
 ###  Race Dashboard
