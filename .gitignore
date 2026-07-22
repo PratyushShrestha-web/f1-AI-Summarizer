@@ -13,7 +13,8 @@ venv/
 .vscode/
 .idea/
 
-# Generated files
+# Generated/cache data
+data/summary_cache.json
 output/
 
 # OS files
