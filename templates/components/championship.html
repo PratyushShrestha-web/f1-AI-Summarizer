@@ -19,18 +19,9 @@
 
         <div class="flex items-center gap-4">
 
-            <div class="text-2xl">
-
-                {% if driver.position == 1 %}
-                    🥇
-                {% elif driver.position == 2 %}
-                    🥈
-                {% elif driver.position == 3 %}
-                    🥉
-                {% endif %}
-
-            </div>
-
+           <div class="text-red-500 font-bold text-xl">
+    P{{ driver.position }}
+</div>
             <div>
 
                 <p class="font-semibold">
