@@ -12,6 +12,8 @@ The application retrieves Formula 1 session data, race results, driver and const
   ## dashboard
   ---------------------------------------------------------------------------------------------------------------------------
 <img width="1891" height="906" alt="image" src="https://github.com/user-attachments/assets/3ce3c086-6a5b-4fff-b9dd-f5ae4fc94d4b" />
+<img width="1892" height="917" alt="image" src="https://github.com/user-attachments/assets/5eebe5d8-ac9c-4d1f-9044-48a4071ce54e" />
+<img width="1892" height="917" alt="image" src="https://github.com/user-attachments/assets/a4041b80-1133-45e4-a890-c0920a099468" />
 
 
 ##  Features
