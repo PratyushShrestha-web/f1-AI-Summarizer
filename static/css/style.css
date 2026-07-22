@@ -751,3 +751,91 @@ body {
     }
 
 }
+/* ============================= */
+/* RESPONSIVE MOBILE DASHBOARD */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    /* Main page container */
+    .max-w-7xl {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    /* Bento grid becomes one column */
+    .bento-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-top: 24px;
+    }
+
+    /* Every card takes full width */
+    .large,
+    .medium,
+    .small {
+        grid-column: span 1;
+        min-height: auto;
+    }
+
+    /* Cards */
+    .bento-card {
+        padding: 18px;
+        border-radius: 16px;
+    }
+
+    /* General cards */
+    .card {
+        padding: 20px;
+    }
+
+    /* Titles */
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .card-title {
+        font-size: 20px;
+    }
+
+    /* Status bar */
+    .status-bar {
+        justify-content: flex-start;
+        gap: 8px;
+        margin-top: 20px;
+    }
+
+    .status-item {
+        font-size: 11px;
+        padding: 9px 12px;
+    }
+
+    /* Maps */
+    #map {
+        height: 350px !important;
+    }
+
+    #mini-map {
+        height: 250px !important;
+    }
+
+    /* AI report */
+    .report-header {
+        padding: 18px;
+    }
+
+    .race-data-strip {
+        padding: 14px 18px;
+    }
+
+    .report-body {
+        padding: 18px;
+        font-size: 14px;
+    }
+
+    .report-footer {
+        padding: 12px 18px;
+    }
+
+}

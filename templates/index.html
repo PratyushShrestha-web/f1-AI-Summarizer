@@ -19,7 +19,7 @@
 <body class="bg-gradient-to-b from-black via-gray-900 to-black text-white">
 {% include "components/navbar.html" %}
 
-<div class="max-w-7xl mx-auto px-8 py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
 
     {% include "components/hero.html" %}
 
@@ -228,46 +228,7 @@ if (miniMapContainer) {
 
 </script>
 
-<script>
-    const miniMap = L.map("mini-map", {
-    zoomControl: false,
-    dragging: false,
-    scrollWheelZoom: false,
-    doubleClickZoom: false,
-    boxZoom: false,
-    keyboard: false,
-    touchZoom: false
-}).setView([20, 0], 2);
 
-L.tileLayer(
-    "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
-    {
-        attribution: "&copy; OpenStreetMap &copy; CARTO"
-    }
-).addTo(miniMap);
-
-const miniBounds = [];
-
-for (const circuit in circuits) {
-
-    const info = circuits[circuit];
-
-    L.circleMarker(info.coordinates, {
-        radius: 5,
-        color: "#E10600",
-        fillColor: "#E10600",
-        fillOpacity: 1
-    })
-    .addTo(miniMap);
-
-    miniBounds.push(info.coordinates);
-}
-
-miniMap.fitBounds(miniBounds, {
-    padding: [20, 20]
-});
-    lucide.createIcons();
-</script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
 <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
 <script>

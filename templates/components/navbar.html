@@ -1,57 +1,144 @@
 <nav class="sticky top-0 z-50 backdrop-blur-md bg-black/80 border-b border-red-600/30">
 
-    <div class="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 py-4">
 
-        <!-- BRAND -->
+        <div class="flex items-center justify-between">
 
-        <a href="/" class="flex items-center gap-3">
+            <!-- BRAND -->
 
-            <img
-                src="https://upload.wikimedia.org/wikipedia/commons/3/33/F1.svg"
-                class="h-8"
+            <a href="/" class="flex items-center gap-2 sm:gap-3">
+
+                <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/3/33/F1.svg"
+                    class="h-7 sm:h-8"
+                >
+
+                <h1 class="text-xl sm:text-2xl font-bold tracking-wide">
+                    V6 Turbo <span class="text-red-500">AI</span>
+                </h1>
+
+            </a>
+
+
+            <!-- DESKTOP NAVIGATION -->
+
+            <div class="hidden md:flex gap-6 lg:gap-8 text-gray-300">
+
+                <a href="/" class="hover:text-red-500 transition">
+                    Overview
+                </a>
+
+                <a href="/circuits" class="hover:text-red-500 transition">
+                    Circuits
+                </a>
+
+                <a href="/standings" class="hover:text-red-500 transition">
+                    Standings
+                </a>
+
+                <a href="/race" class="hover:text-red-500 transition">
+                    Races
+                </a>
+
+                <a href="/analysis" class="hover:text-red-500 transition">
+                    AI Analysis
+                </a>
+
+                <a
+                    href="https://github.com/PratyushShrestha-web/f1-AI-Summarizer"
+                    target="_blank"
+                    class="hover:text-red-500 transition"
+                >
+                    GitHub
+                </a>
+
+            </div>
+
+
+            <!-- MOBILE MENU BUTTON -->
+
+            <button
+                id="mobile-menu-btn"
+                class="md:hidden text-gray-300"
             >
 
-            <h1 class="text-2xl font-bold tracking-wide">
-                V6 Turbo <span class="text-red-500">AI</span>
-            </h1>
+                <i data-lucide="menu" class="w-7 h-7"></i>
 
-        </a>
+            </button>
+
+        </div>
 
 
-        <!-- NAVIGATION -->
+        <!-- MOBILE NAVIGATION -->
 
-        <div class="flex gap-8 text-gray-300">
+        <div
+            id="mobile-menu"
+            class="hidden md:hidden mt-4 border-t border-gray-800 pt-4"
+        >
 
-            <a href="/" class="hover:text-red-500 transition">
-                Overview
-            </a>
+            <div class="flex flex-col gap-4 text-gray-300">
 
-            <a href="/circuits" class="hover:text-red-500 transition">
-                Circuits
-            </a>
+                <a href="/" class="hover:text-red-500 transition">
+                    Overview
+                </a>
 
-            <a href="/standings" class="hover:text-red-500 transition">
-                Standings
-            </a>
+                <a href="/circuits" class="hover:text-red-500 transition">
+                    Circuits
+                </a>
 
-            <a href="/race" class="hover:text-red-500 transition">
-                Races
-            </a>
+                <a href="/standings" class="hover:text-red-500 transition">
+                    Standings
+                </a>
 
-            <a href="/analysis" class="hover:text-red-500 transition">
-                AI Analysis
-            </a>
+                <a href="/race" class="hover:text-red-500 transition">
+                    Races
+                </a>
 
-            <a
-                href="https://github.com/PratyushShrestha-web/f1-AI-Summarizer"
-                target="_blank"
-                class="hover:text-red-500 transition"
-            >
-                GitHub
-            </a>
+                <a href="/analysis" class="hover:text-red-500 transition">
+                    AI Analysis
+                </a>
+
+                <a
+                    href="https://github.com/PratyushShrestha-web/f1-AI-Summarizer"
+                    target="_blank"
+                    class="hover:text-red-500 transition"
+                >
+                    GitHub
+                </a>
+
+            </div>
 
         </div>
 
     </div>
 
 </nav>
+
+
+<script>
+
+const mobileMenuBtn =
+    document.getElementById("mobile-menu-btn");
+
+const mobileMenu =
+    document.getElementById("mobile-menu");
+
+
+mobileMenuBtn.addEventListener("click", () => {
+
+    mobileMenu.classList.toggle("hidden");
+
+    const icon =
+        mobileMenu.classList.contains("hidden")
+            ? "menu"
+            : "x";
+
+    mobileMenuBtn.innerHTML = `
+        <i data-lucide="${icon}" class="w-7 h-7"></i>
+    `;
+
+    lucide.createIcons();
+
+});
+
+</script>
