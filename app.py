@@ -246,25 +246,31 @@ def standings_page():
         constructors=data["constructors"]
     )
 
-@app.route("/races")
-def races_page():
+@app.route("/race")
+def race_page():
 
     data = get_dashboard_data()
 
     return render_template(
-        "races.html",
+        "race.html",
         race=data["race"],
-        results=data["results"]
+        formatted_date=data["formatted_date"],
+        race_results=data["race_results"],
+        podium=data["podium"],
+        important_events=data["important_events"]
     )
 
 
 @app.route("/analysis")
 def analysis_page():
 
+    data = get_dashboard_data()
+
     return render_template(
-        "analysis.html"
+        "analysis.html",
+        race=data["race"],
+        formatted_date=data["formatted_date"]
     )
-    
 
 if __name__ == "__main__":
     app.run(debug=True)

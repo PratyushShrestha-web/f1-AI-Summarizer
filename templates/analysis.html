@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Analysis | V6 Turbo AI</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+
+</head>
+
+
+<body class="bg-black text-white">
+
+    {% include "components/navbar.html" %}
+
+
+    <main class="max-w-5xl mx-auto px-8 py-12">
+
+
+        <!-- HEADER -->
+
+        <section class="text-center mb-12">
+
+            <div class="flex justify-center mb-4">
+
+                <div class="p-4 rounded-2xl bg-red-500/10">
+
+                    <i
+                        data-lucide="sparkles"
+                        class="w-10 h-10 text-red-500"
+                    ></i>
+
+                </div>
+
+            </div>
+
+
+            <h1 class="text-5xl font-bold mb-4">
+
+                AI Race Analysis
+
+            </h1>
+
+
+            <p class="text-gray-400 max-w-2xl mx-auto">
+
+                Let V6 Turbo AI analyze the latest Formula 1 race using
+                structured race data and FIA race-control events.
+
+            </p>
+
+        </section>
+
+
+        <!-- RACE INFO -->
+
+        <section class="bento-card mb-8">
+
+            <div class="flex items-center justify-between">
+
+                <div>
+
+                    <p class="text-gray-400 text-sm uppercase">
+
+                        Latest Race
+
+                    </p>
+
+
+                    <h2 class="text-3xl font-bold mt-2">
+
+                        {{ race.country_name }} Grand Prix
+
+                    </h2>
+
+
+                    <p class="text-gray-400 mt-2">
+
+                        {{ race.circuit_short_name }}
+                        ·
+                        {{ formatted_date }}
+
+                    </p>
+
+                </div>
+
+
+                <i
+                    data-lucide="flag"
+                    class="w-10 h-10 text-red-500"
+                ></i>
+
+            </div>
+
+        </section>
+
+
+        <!-- GENERATE BUTTON -->
+
+        <div class="text-center mb-10">
+
+            <button
+                id="generate-btn"
+                class="px-8 py-4
+                       bg-red-600
+                       hover:bg-red-700
+                       rounded-xl
+                       font-semibold
+                       transition"
+            >
+
+                <span id="btn-text">
+
+                    <i
+                        data-lucide="sparkles"
+                        class="inline w-5 h-5 mr-2"
+                    ></i>
+
+                    Generate AI Analysis
+
+                </span>
+
+            </button>
+
+        </div>
+
+
+        <!-- ANALYSIS -->
+
+        <section id="analysis-content">
+
+            <div class="analysis-placeholder">
+
+                <i
+                    data-lucide="bot"
+                    class="w-12 h-12 text-red-500 mb-4"
+                ></i>
+
+
+                <h3 class="text-xl font-semibold mb-2">
+
+                    No AI Analysis Yet
+
+                </h3>
+
+
+                <p class="text-gray-400">
+
+                    Click the button above to generate an AI-powered
+                    race analysis.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <script>
+
+        const generateBtn =
+            document.getElementById("generate-btn");
+
+
+        const buttonText =
+            document.getElementById("btn-text");
+
+
+        const content =
+            document.getElementById("analysis-content");
+
+
+        generateBtn.addEventListener(
+            "click",
+            async function () {
+
+
+                generateBtn.disabled = true;
+
+
+                buttonText.innerHTML = `
+
+                    <i
+                        data-lucide="loader-circle"
+                        class="inline w-5 h-5 mr-2 animate-spin"
+                    ></i>
+
+                    V6 Turbo AI Processing...
+
+                `;
+
+                lucide.createIcons();
+
+
+                try {
+
+
+                    const response =
+                        await fetch("/api/summary");
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            data.error ||
+                            "Failed to generate analysis"
+                        );
+
+                    }
+
+
+                    const formattedSummary =
+                        marked.parse(data.summary);
+
+
+                    content.innerHTML = `
+
+                        <div class="f1-report">
+
+
+                            <div class="report-header">
+
+                                <div class="report-brand">
+
+                                    <div class="report-icon">
+
+                                        <i data-lucide="sparkles"></i>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <div class="report-kicker">
+
+                                            V6 TURBO AI
+
+                                        </div>
+
+
+                                        <h2>
+
+                                            Race Intelligence Report
+
+                                        </h2>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="report-status">
+
+                                    <span class="status-dot"></span>
+
+                                    ANALYSIS COMPLETE
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="race-data-strip">
+
+
+                                <div class="data-item">
+
+                                    <span class="data-label">
+
+                                        ENGINE
+
+                                    </span>
+
+
+                                    <span class="data-value">
+
+                                        Gemini 2.5 Flash
+
+                                    </span>
+
+                                </div>
+
+
+                                <div class="data-divider"></div>
+
+
+                                <div class="data-item">
+
+                                    <span class="data-label">
+
+                                        SOURCE
+
+                                    </span>
+
+
+                                    <span class="data-value">
+
+                                        FIA Race Control
+
+                                    </span>
+
+                                </div>
+
+
+                                <div class="data-divider"></div>
+
+
+                                <div class="data-item">
+
+                                    <span class="data-label">
+
+                                        SYSTEM
+
+                                    </span>
+
+
+                                    <span class="data-value">
+
+                                        V6 Turbo AI
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="report-body">
+
+                                ${formattedSummary}
+
+                            </div>
+
+
+                            <div class="report-footer">
+
+                                <i data-lucide="shield-check"></i>
+
+                                Generated from structured Formula 1 race event data
+
+                            </div>
+
+
+                        </div>
+
+                    `;
+
+
+                    lucide.createIcons();
+
+
+                    gsap.from(
+                        ".f1-report",
+                        {
+                            opacity: 0,
+                            y: 25,
+                            duration: 0.7,
+                            ease: "power3.out"
+                        }
+                    );
+
+
+                    buttonText.innerHTML = `
+
+                        <i
+                            data-lucide="check"
+                            class="inline w-5 h-5 mr-2"
+                        ></i>
+
+                        Analysis Generated
+
+                    `;
+
+
+                    lucide.createIcons();
+
+
+                }
+
+
+                catch (error) {
+
+
+                    console.error(
+                        "AI ANALYSIS ERROR:",
+                        error
+                    );
+
+
+                    content.innerHTML = `
+
+                        <div class="analysis-placeholder">
+
+                            <i
+                                data-lucide="triangle-alert"
+                                class="w-12 h-12 text-red-500 mb-4"
+                            ></i>
+
+
+                            <h3 class="text-xl font-semibold mb-2">
+
+                                Analysis Failed
+
+                            </h3>
+
+
+                            <p class="text-gray-400">
+
+                                ${error.message}
+
+                            </p>
+
+                        </div>
+
+                    `;
+
+
+                    lucide.createIcons();
+
+
+                    buttonText.innerHTML = `
+
+                        <i
+                            data-lucide="rotate-ccw"
+                            class="inline w-5 h-5 mr-2"
+                        ></i>
+
+                        Try Again
+
+                    `;
+
+
+                    lucide.createIcons();
+
+                }
+
+
+                generateBtn.disabled = false;
+
+            }
+
+        );
+
+
+        lucide.createIcons();
+
+    </script>
+
+
+</body>
+
+</html>
