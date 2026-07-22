@@ -235,7 +235,7 @@ Possible future improvements include:
 * User accounts and saved reports
 * More detailed AI race insights
 
-## 👨‍💻 Author
+##  Author
 
 **Pratyush Shrestha**
 
