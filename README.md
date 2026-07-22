@@ -9,13 +9,37 @@ The application retrieves Formula 1 session data, race results, driver and const
 [View the Live Demo](https://f1-ai-summarizer.onrender.com/)
 
 ## Screenshots
-  ## dashboard
+
+  ## Dashboard
   ---------------------------------------------------------------------------------------------------------------------------
 <img width="1891" height="906" alt="image" src="https://github.com/user-attachments/assets/3ce3c086-6a5b-4fff-b9dd-f5ae4fc94d4b" />
 <img width="1892" height="917" alt="image" src="https://github.com/user-attachments/assets/5eebe5d8-ac9c-4d1f-9044-48a4071ce54e" />
 <img width="1892" height="917" alt="image" src="https://github.com/user-attachments/assets/a4041b80-1133-45e4-a890-c0920a099468" />
 
+ ## Circuits
+   ---------------------------------------------------------------------------------------------------------------------------
+<img width="1891" height="920" alt="image" src="https://github.com/user-attachments/assets/20a2f0ea-3ab3-4fb4-ae3e-b3253488bd94" />
+<img width="1896" height="909" alt="image" src="https://github.com/user-attachments/assets/589f33d8-87a0-4b3e-8c94-cc276412afa3" />
 
+ ## Standings
+   ---------------------------------------------------------------------------------------------------------------------------
+<img width="1898" height="909" alt="image" src="https://github.com/user-attachments/assets/16f51a1b-a8aa-4f6a-ae43-8a2fb59b18ff" />
+<img width="1891" height="907" alt="image" src="https://github.com/user-attachments/assets/21e26d66-2fd4-42ac-8979-28026018961e" />
+
+ ## Races
+   ---------------------------------------------------------------------------------------------------------------------------
+   <img width="1903" height="918" alt="image" src="https://github.com/user-attachments/assets/0b942c12-617b-4a6b-9a1c-b9023dccf757" />
+   <img width="1900" height="885" alt="image" src="https://github.com/user-attachments/assets/420743a6-9abc-48b9-9816-7d9b42c3876b" />
+   <img width="1897" height="907" alt="image" src="https://github.com/user-attachments/assets/ebf6ef0c-9d17-4c1b-9c9b-e21fd922b991" />
+
+ ## A1 analysis
+   ---------------------------------------------------------------------------------------------------------------------------
+   <img width="1816" height="818" alt="image" src="https://github.com/user-attachments/assets/63964bce-6de8-459c-a7d1-86a8b8110c23" />
+
+   
+   ---------------------------------------------------------------------------------------------------------------------------  ---------------------------------------------
+
+ 
 ##  Features
 
 ###  Race Dashboard
